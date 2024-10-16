@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="">
+    <div id="slider" class="sl-slider-wrapper">
+        <div class="sl-slider">
+
+            {% for property in carousel_property_list %}
+                <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+                    <div class="sl-slide-inner">
+                        <div class="bg-img bg-img-1"></div>
+                        <h2><a href="{% url 'property:detail' property.id %}"></a>{{ property.name }}</a></h2>
+                        <blockquote>
+                            <p class="location"><span class="glyphicon glyphicon-map-marker"></span> {{ property.location }}</p>
+                            <p>{{ property.description }}</p>
+                            <cite>$ {{ property.price }}</cite>
+                        </blockquote>
+                    </div>
+                </div>
+            {% endfor %}
+        </div><!-- /sl-slider -->
+        <nav id="nav-dots" class="nav-dots">
+            <span class="nav-dot-current"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </nav>
+        </div><!-- /slider-wrapper -->
+  </div>
+   <!-- banner -->
+  <div class="banner-search">
+    <div class="container">
+        <h3>Buy, Sale & Rent</h3>
+        <div class="searchbar">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6">
+                    <form method="get" action="{% url 'property:list' %}">
+                        <input type="text" class="form-control" name="name" placeholder="Search for Properties">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-3 ">
+                                <select class="form-control" name="building_type">
+                                    {% for type in property_building_type_list %}
+                                    <option value= "{{ type.id }}">{{ type.name }}></option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-lg-3 col-sm-4">
+                                <input type="number" name="min"class="form-control" placeholder="Minimum price" >
+                            </div>
+                            <div class="col-lg-3 col-sm-4">
+                                <input type="number" name="max" class="form-control" placeholder="Maximum price">
+                            </div>
+                            <div class="col-lg-3 col-sm-4">
+                                <button class="btn btn-success" type="submit" onclick="">Find Now</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+  </div>
+  {% endblock %}

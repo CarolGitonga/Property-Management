@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.conf import settings
+
+
 
 
 # Create your models here.
@@ -10,6 +13,8 @@ class Property(models.Model):
     description = models.TextField (verbose_name='Property Details')
     location = models.CharField (max_length=200,verbose_name='Property Location')
     date_added = models.DateField(default=timezone.now, verbose_name='Date Registered')
+    availability = models.BooleanField(default=True)
+    bedrooms = models.IntegerField(default=0, verbose_name='Number of bedrooms')
 
     class Meta:
         verbose_name_plural = 'Properties'
