@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Property
-from django.views.generic import DetailView,ListView
+from django.views.generic import DetailView,ListView, CreateView
 
 # Create your views here.
 def hot_properties(number):
@@ -17,3 +17,10 @@ class PropertyListView(ListView):
     extra_context  = {
         'hot_property_list': hot_properties(4)
     }
+class PropertyCreateView(CreateView):
+    template_name_suffix = '_create_form'
+    model = Property
+    fields = (
+        'name', 'price', 'location', 'description', 'bedrooms'
+    )
+
