@@ -15,6 +15,11 @@ class Property(models.Model):
     date_added = models.DateField(default=timezone.now, verbose_name='Date Registered')
     availability = models.BooleanField(default=True)
     bedrooms = models.IntegerField(default=0, verbose_name='Number of bedrooms')
+    picture_1 = models.ImageField( blank=True, null=True,upload_to="media/property")
+    picture_2 = models.ImageField(blank=True, null=True, upload_to="media/property")
+    picture_3 = models.ImageField(blank=True, null=True, upload_to="media/property")
+    picture_4 = models.ImageField(blank=True, null=True, upload_to="media/property")
+    bathrooms = models.IntegerField(default=0, verbose_name='Number of Bathrooms')
 
     class Meta:
         verbose_name_plural = 'Properties'
