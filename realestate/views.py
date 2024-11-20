@@ -6,7 +6,7 @@ def index(request, *args, **kwargs):
     context = {
         'carousel_property_list': hot_properties(4),
         'hot_property_list': hot_properties(4),
-        'recommennded_property_list': hot_properties(4)
+        'recommended_property_list': hot_properties(4)
     }
     return render(request, 'index.html', context)
 

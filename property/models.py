@@ -7,11 +7,33 @@ from django.conf import settings
 
 
 # Create your models here.
+class SaleType(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    class Meta:
+        ordering = ("name", )
+        verbose_name = "Type of Sale"
+        verbose_name_plural = "Types of Sale"
+
+    def __str__(self):
+        return self.name
+class BuildingType(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = "Type of Building"
+        verbose_name_plural = "Types of Building"
+        ordering = ("name", )
 class Property(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField(verbose_name='Property Price')
     description = models.TextField (verbose_name='Property Details')
     location = models.CharField (max_length=200,verbose_name='Property Location')
+    building_type = models.ForeignKey(BuildingType, on_delete=models.SET_NULL, null=True, verbose_name='Property Type')
+    sale_type = models.ForeignKey(SaleType, on_delete=models.SET_NULL, null=True, verbose_name='Type of Sale')
     date_added = models.DateField(default=timezone.now, verbose_name='Date Registered')
     availability = models.BooleanField(default=True)
     bedrooms = models.IntegerField(default=0, verbose_name='Number of bedrooms')
