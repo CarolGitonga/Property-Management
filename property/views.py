@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from .models import Property
-from django.views.generic import DetailView,ListView, CreateView, DeleteView, UpdateView
+from .models import Property, PropertyEnquiry
+from django.views.generic import DetailView,ListView, CreateView, DeleteView, UpdateView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import EnquiryForm
+from django.urls import reverse_lazy
 
 # Create your views here.
 def hot_properties(number):
@@ -57,6 +59,21 @@ class PropertyUpdateView(UpdateView):
         'name', 'price', 'description', 'location', 'building_type', 'sale_type', 'bedrooms',
         'bathrooms', \
         'picture_1', 'picture_2', 'picture_3', 'picture_4')
+
+class NewEnquiryView(LoginRequiredMixin, FormView):
+    form_class = EnquiryForm
+    template_name = 'property/propertyenquiry_form.html'
+
+    def get_success_url(self):
+        return reverse_lazy('property:detail', kwargs={'pk':self.kwargs['property_id']})
+    
+    def form_valid(self, form):
+        property = Property.objects.get(pk=self.kwargs['property_id'])
+        form.save_inquiry(self.request.user, property=property)
+        return super(NewEnquiryView, self).form_valid(form)
+
+class InquiryDetail(DetailView) :
+    model = PropertyEnquiry
     
     
     

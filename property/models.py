@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.conf import settings
+from django.contrib.auth.models import User
 
 
 
@@ -52,3 +53,14 @@ class Property(models.Model):
     def get_absolute_url(self):
         return reverse_lazy('property:detail', kwargs={'pk:self.pk'})
     
+class PropertyEnquiry(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE, verbose_name="Property Details")
+    user = models.ForeignKey(User,on_delete=models.CASCADE, verbose_name="Customer")
+    subject = models.CharField(max_length=200)
+    message = models.TextField(verbose_name="Customer Message")
+    date = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name = "Property Inquiry"
+        verbose_name_plural = "Property Inquiries"
+        ordering = ['date', 'property']
