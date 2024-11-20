@@ -45,6 +45,11 @@
             <ul class="nav navbar-nav navbar-right">
              <li><a href="{% url 'index_page' %}">Home</a></li>
              <li><a href="{% url 'about_page' %}">About</a></li>
+             {% if request.user.is_authenticated %}
+             <li><a href="{% url 'logout' %}">{{ request.user.get_full_name }} Logout</a></li>
+             {% else %}
+             <li><a href="{% url 'login' %}">Login</a></li>
+             {% endif %}
             </ul>
           </div>
           <!-- #Nav Ends -->

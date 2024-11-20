@@ -49,6 +49,7 @@
           {% for property in hot_property_list %}
           <div class="row">
             <div class="col-lg-4 col-sm-5">
+              <p>Debugging Image Path: {{ property.picture_1 }}</p>
               <img src="{{ MEDIA_URL }}{{ property.picture_1 }}" class="img-responsive img-circle" alt="properties">
             </div>
             <div class="col-lg-8 col-sm-7">

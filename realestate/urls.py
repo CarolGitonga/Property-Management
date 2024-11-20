@@ -28,6 +28,10 @@ urlpatterns = [
 
     path('property/', include('property.urls')),
 
+    # for auth views
+    path('auth/', include('django.contrib.auth.urls')),
+    
+
 
 ]
 # for serving media documents
