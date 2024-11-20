@@ -25,6 +25,7 @@ urlpatterns = [
     path('index.html', views.index, name='index_page'),
     path('', views.index, name='index_page'),
     path('about.html', views.about, name='about_page'),
+    path('blog.html', views.blog, name='blog_page'),
 
     path('property/', include('property.urls')),
     path('agent/', include('agent.urls')),

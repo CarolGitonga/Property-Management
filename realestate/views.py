@@ -12,3 +12,6 @@ def index(request, *args, **kwargs):
 
 def about(request, *args, **kwargs):
     return render(request, 'about.html')
+
+def blog(request, *args, **kwargs):
+    return render(request, 'blog.html')
