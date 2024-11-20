@@ -29,6 +29,7 @@ urlpatterns = [
     path('property/', include('property.urls')),
     path('agent/', include('agent.urls')),
     path('booking/', include('booking.urls')),
+     path('contact/', include('contact.urls')),
 
     # for auth views
     path('auth/', include('django.contrib.auth.urls')),
