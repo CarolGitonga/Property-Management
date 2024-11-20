@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'property',
+    'agent',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,10 @@ STATICFILES_DIRS = [
 # Media files (uploads)
 MEDIA_URL = '/media/'# Use a different URL for media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # Store media files in a separate directory
+
+LOGIN_REDIRECT_URL = reverse_lazy('index_page')
+LOGIN_URL = reverse_lazy('login')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 
 # Default primary key field type

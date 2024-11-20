@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from .models import Property, PropertyEnquiry
-from django.views.generic import DetailView,ListView, CreateView, DeleteView, UpdateView, FormView
+from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic import DetailView,ListView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import EnquiryForm
 from django.urls import reverse_lazy
-
+from agent.models import Agent
+from django.shortcuts import redirect
 # Create your views here.
 def hot_properties(number):
     property_list = Property.objects.filter(availability=True) [:number]
@@ -59,6 +61,14 @@ class PropertyUpdateView(UpdateView):
         'name', 'price', 'description', 'location', 'building_type', 'sale_type', 'bedrooms',
         'bathrooms', \
         'picture_1', 'picture_2', 'picture_3', 'picture_4')
+    
+    def form_valid(self, form):
+        agent = Agent.objects.get(user=self.request.user)
+        self.object = form.save()
+        self.object.agent = agent
+        self.object.save()
+        return redirect(reverse_lazy("property:detail", kwargs={'pk':self.object.id}))
+
 
 class NewEnquiryView(LoginRequiredMixin, FormView):
     form_class = EnquiryForm

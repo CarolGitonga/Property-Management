@@ -27,6 +27,7 @@ urlpatterns = [
     path('about.html', views.about, name='about_page'),
 
     path('property/', include('property.urls')),
+    path('agent/', include('agent.urls')),
 
     # for auth views
     path('auth/', include('django.contrib.auth.urls')),
