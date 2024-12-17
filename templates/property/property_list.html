@@ -6,8 +6,8 @@
 <!-- banner -->
 <div class="inside-banner">
   <div class="container">
-    <span class="pull-right"><a href="#">Home</a> / Buy, Sale & Rent</span>
-    <h2>Buy, Sale & Rent</h2>
+    <span class="pull-right"><a href="#">Home</a> / Buy or Rent</span>
+    <h2>Buy or Rent</h2>
 </div>
 </div>
 <!-- banner -->
@@ -56,11 +56,11 @@
         {% for property in hot_property_list %}
             <div class="row">
                 <div class="col-lg-4 col-sm-5">
-                    <img src="{{ MEDIA_URL }}{{ property.picture_1 }}" class="img-responsive img-circle" alt="properties">
+                    <img src="{{ property.picture_1.url }}" class="img-responsive img-circle" alt="properties">
                 </div>
                 <div class="col-lg-8 col-sm-7">
                 <h5><a href="{% url 'property:detail' property.id %}">{{ property.name }}</a></h5>
-                <p class="price">${{ property.price }}</p> </div>
+                <p class="price">Ksh. {{ property.price }}</p> </div>
             </div>
         {% endfor %}
 
@@ -88,7 +88,7 @@
     {% for property in property_list %}
         <div class="col-lg-4 col-sm-6">
         <div class="properties">
-            <div class="image-holder"><img src="{{ MEDIA_URL }}{{ property.picture_1 }}" class="img-responsive" alt="{{ property.name }}">
+            <div class="image-holder"><img src="{{ property.picture_1.url }}" class="img-responsive" alt="{{ property.name }}">
                 <div class="status sold">
                     {% if property.availability %}
                         Available

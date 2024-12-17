@@ -15,7 +15,7 @@
                         <blockquote>
                             <p class="location"><span class="glyphicon glyphicon-map-marker"></span> {{ property.location }}</p>
                             <p>{{ property.description }}</p>
-                            <cite>$ {{ property.price }}</cite>
+                            <cite>Ksh. {{ property.price }}</cite>
                         </blockquote>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
 <div class="banner-search">
   <div class="container">
     <!-- banner -->
-    <h3>Buy & Rent</h3>
+    <h3>Buy or Rent</h3>
     <div class="searchbar">
       <div class="row">
         <div class="col-lg-6 col-sm-6">
@@ -89,7 +89,7 @@
     <div id="owl-example" class="owl-carousel">
         {% for property in hot_property_list %}
             <div class="properties">
-                <div class="image-holder"><img src="{{ MEDIA_URL }}{{ property.picture_1 }}" class="img-responsive" alt="{{ property.name }}"/>
+                <div class="image-holder"><img src="{{ property.picture_1.url }}" class="img-responsive" alt="{{ property.name }}"/>
                     <div class="status sold">
                         {% if property.availability %}
                             Available
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <h4><a href="{% url 'property:detail' property.id %}">{{ property.name }}</a></h4>
-                <p class="price">Price: $ {{ property.price }}</p>
+                <p class="price">Price: Ksh. {{ property.price }}</p>
                 <div class="listing-detail">
                     <span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room">{{ property.bedrooms }}</span>
                     <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room">{{ property.bathrooms }}</span>
@@ -116,34 +116,7 @@
         <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.<br><a href="about.php">Learn More</a></p>
 
       </div>
-      <div class="col-lg-5 col-lg-offset-1 col-sm-3 recommended">
-        <h3>The Recommended Properties</h3>
-        <div id="myCarousel" class="carousel slide">
-          <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="3" class=""></li>
-          </ol>
-          <!-- Carousel items -->
-          <div class="carousel-inner">
-              {% for property in recommended_property_list %}
-                  <div class="item active">
-                    <div class="row">
-                      <div class="col-lg-4">
-                            <img src="{{ MEDIA_URL }}{{ property.picture_1 }}" class="img-responsive" alt="{{ property.name }}"/>
-                        </div>
-                        <div class="col-lg-8">
-                            <h5><a href="{% url 'property:detail' property.id %}">{{ property.name }}</a></h5>
-                            <p class="price">${{ property.price }}</p>
-                            <a href="{% url 'property:detail' property.id %}" class="more">More Detail</a>
-                        </div>
-                    </div>
-                  </div>
-              {% endfor %}
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </div>
